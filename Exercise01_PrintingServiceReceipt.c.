@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+int main() {
+    int service, pages;
+    float price, total, payment, change;
+
+    do {
+        printf("\n===== PRINTING SHOP =====\n");
+        printf("1. Black-and-white printing (PHP 2.00/page)\n");
+        printf("2. Colored printing (PHP 8.00/page)\n");
+        printf("3. Photo-quality printing (PHP 15.00/page)\n");
+        printf("Enter service choice: ");
+        scanf("%d", &service);
+
+        if (service < 1 || service > 3) {
+            printf("Invalid service choice!\n");
+        }
+    } while (service < 1 || service > 3);
+
+    printf("Enter number of pages: ");
+    scanf("%d", &pages);
+
+    if (pages <= 0) {
+        printf("Invalid number of pages!\n");
+        return 0;
+    }
+
+    switch (service) {
+        case 1:
+            price = 2.00;
+            printf("\nService: Black-and-white printing\n");
+            break;
+        case 2:
+            price = 8.00;
+            printf("\nService: Colored printing\n");
+            break;
+        case 3:
+            price = 15.00;
+            printf("\nService: Photo-quality printing\n");
+            break;
+    }
+
+    total = price * pages;
+
+    printf("Price per page: PHP %.2f\n", price);
+    printf("Number of pages: %d\n", pages);
+    printf("Total charge: PHP %.2f\n", total);
+
+    printf("Enter customer payment: PHP ");
+    scanf("%f", &payment);
+
+    printf("\n===== PRINTING BILL =====\n");
+    printf("Service: ");
+
+    switch (service) {
+        case 1:
+            printf("Black-and-white printing\n");
+            break;
+        case 2:
+            printf("Colored printing\n");
+            break;
+        case 3:
+            printf("Photo-quality printing\n");
+            break;
+    }
+
+    printf("Pages: %d\n", pages);
+    printf("Total charge: PHP %.2f\n", total);
+    printf("Payment: PHP %.2f\n", payment);
+
+    if (payment >= total) {
+        change = payment - total;
+        printf("Change: PHP %.2f\n", change);
+    } else {
+        change = total - payment;
+        printf("Insufficient payment!\n");
+        printf("Amount still needed: PHP %.2f\n", change);
+    }
+
+    printf("=========================\n");
+
+    return 0;
+}
